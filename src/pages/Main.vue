@@ -37,6 +37,7 @@ export default {
     Movies,
     Sort,
   },
+
   data() {
     return {
       colors: [
@@ -52,9 +53,6 @@ export default {
           id: 3,
           color: "grey",
         },
-        // "green",
-        // "lightGreen",
-        // "grey"
       ],
       colorReverse: [],
       currentInd: 1,
@@ -63,48 +61,50 @@ export default {
       sort: "",
     };
   },
+
   mounted() {
     this.colorReverse = this.colors.reverse();
-    // console.log(this.colorReverse)
     this.GET_MOVIES_FROM_API();
-    console.log(this.MOVIES)
+    console.log(this.MOVIES);
   },
+
   computed: {
     ...mapGetters({ MOVIES: "movies/MOVIES" }),
+
     moviesWithID() {
       const newMovies = this.MOVIES.map((item, ind, ar) => {
         return { ...item, ID: ind };
       });
-      return newMovies.slice(0,5);
+      return newMovies.slice(0, 5);
     },
+
     listOfMovies() {
       switch (this.sort) {
         case "Alph":
           return [...this.moviesWithID].sort((movieA, movieB) =>
             movieA.original_title.localeCompare(movieB.original_title)
-          )
-        // .slice(0, 5);
+          );
         case "imgLeft":
           return [...this.moviesWithID].filter((movie, i) => {
             return i === 0 || i % 2 === 0;
-          })
-        // .slice(0, 5);
+          });
         default:
           return [...this.moviesWithID].slice(0, 5);
       }
-      // return this.MOVIES.slice(0, 5);
-      // return this.ind === 0 || this.ind % 2 === 0;
     },
   },
+
   created() {
     addEventListener("resize", () => {
       this.width = innerWidth;
     });
   },
+
   methods: {
     ...mapActions({
       GET_MOVIES_FROM_API: "movies/GET_MOVIES_FROM_API",
     }),
+
     animation() {
       const ind = gsap.timeline();
       this.isActiveButton = true;
@@ -112,24 +112,8 @@ export default {
         x: -this.width,
         duration: 1,
         onComplete: () => {
-          // this.cardsToView = this.cardsToView.filter(
-          //   ({ id }) => id != this.currentInd
-          // );
-          // const first = this.colors[this.colors.length-1];
-
-          // const first = this.colors[0];
-          // console.log(first);
-          // this.colors.push(first);
-          // console.log(this.colors);
-          // this.colors.shift();
-          // console.log(this.colors)
-
-          // this.colorReverse.push(this.colorReverse.shift())
           this.colorReverse.unshift(this.colorReverse.pop());
-          // this.colorReverse = this.colorReverse.filter(
-          //       ({id}) => id != this.currentInd
-          //     );
-          console.log(this.colorReverse);
+          // console.log(this.colorReverse);
           if (this.currentInd < 3) {
             this.currentInd++;
           } else {
@@ -140,11 +124,12 @@ export default {
         },
       });
     },
+
     nextSlide() {
       this.animation();
     },
+
     sortBy(newSort) {
-      // console.log(newSort)
       this.sort = newSort;
     },
   },
@@ -152,29 +137,30 @@ export default {
 </script>
 <style lang="scss" scoped>
 @import "@/styles/mixins.scss";
+
 .number0 {
-  // position: absolute;
   left: -1px;
 }
+
 .number1 {
-  // position: absolute;
   left: -19px;
   @include desktop {
     left: -37px;
   }
 }
+
 .number2 {
-  // position: absolute;
   left: -38px;
   @include desktop {
     left: -80px;
   }
 }
-.wrapper{
+
+.wrapper {
   position: relative;
   height: 900px;
   @include desktop {
-    height:708px;
+    height: 708px;
   }
 }
 </style>

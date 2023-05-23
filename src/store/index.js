@@ -9,4 +9,5 @@ const store = new Vuex.Store({
     movies: movies,
   },
 });
+
 export default store;

@@ -10,7 +10,9 @@
         @input="changeSort"
         v-model="sort"
       />
-      <label class="sort__label" for="sort1">отсортировать блоки по заголовку согласно алфавитного порядка</label>
+      <label class="sort__label" for="sort1"
+        >отсортировать блоки по заголовку согласно алфавитного порядка</label
+      >
     </div>
 
     <div class="sort__check">
@@ -23,7 +25,10 @@
         v-model="sort"
         @input="changeSort"
       />
-      <label class="sort__label" for="sort2">вывести все блоки в формате “изображения - слева, текст - справа”</label>
+      <label class="sort__label" for="sort2"
+        >вывести все блоки в формате “изображения - слева, текст -
+        справа”</label
+      >
     </div>
     <div class="sort__check">
       <input
@@ -35,7 +40,10 @@
         v-model="sort"
         @input="changeSort"
       />
-      <label class="sort__label" for="sort3">вывести все блоки в формате “изображения - слева, текст - справа” и наоборот в шахматном порядке</label>
+      <label class="sort__label" for="sort3"
+        >вывести все блоки в формате “изображения - слева, текст - справа” и
+        наоборот в шахматном порядке</label
+      >
     </div>
   </div>
 </template>
@@ -43,26 +51,24 @@
 export default {
   props: {
     sort: {
-      type: String
-    }  
+      type: String,
+    },
   },
+
   methods: {
     changeSort(event) {
-      // console.log(event.target.value)
-      this.$emit("sortBy", event.target.value)
-    }
-  }
+      this.$emit("sortBy", event.target.value);
+    },
+  },
 };
 </script>
 <style scoped lang="scss">
-.sort{
-  // &__check{
-
-  // }
+.sort {
   margin: 0 auto 67px;
   max-width: 710px;
-  &__label{
-    font-family: 'Roboto';
+
+  &__label {
+    font-family: "Roboto";
     font-style: normal;
     font-weight: 400;
     font-size: 14px;

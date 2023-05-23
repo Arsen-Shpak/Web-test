@@ -1,7 +1,5 @@
 <template>
-  <!-- <div> -->
   <form class="form" @submit.prevent="checkForm">
-    <!-- Name:<input type="text" v-model="name"/> -->
     <div class="form__section">
       <h2 class="form__title" style="margin-bottom: 51px">
         Представьтесь, пожалуйста
@@ -122,7 +120,6 @@
           v-model="form.email"
           required
         />
-        <!-- :class="['form__control', { 'isInvalid': $v.form.email.$error }]" -->
       </div>
       <div class="form__group" style="margin-bottom: 20px">
         <label class="form__label" for="country">Страна</label>
@@ -180,21 +177,19 @@
       <button type="submit" class="form__button">отправить</button>
     </div>
   </form>
-  <!-- <h2>{{ name }}</h2> -->
-  <!-- </div> -->
 </template>
 <script>
 import { validationMixin } from "vuelidate";
 import { required, helpers } from "vuelidate/lib/validators";
-// const alphaNumAndDotValidator = helpers.regex("alphaNumAndDot", /^[а-я\d.]*$/i);
-// const numbers = helpers.regex("numbers", /^[0-9\.]*$/g, ``);
+
 const numbers = helpers.regex("numbers", /^[0-9]+$/);
 const alphaNumAndDotValidator = helpers.regex("alphaNumAndDot", /[А-Яа-я]+$/);
-// const lettersAndNumbers = helpers.regex("lettersAndNumbers", /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?!.*\s).*$/);
 const lettersAndNumbers = helpers.regex("lettersAndNumbers", /^[А-Яа-я0-9]+$/);
 const phones = helpers.regex("phones", /[\+]\d{2}[\(]\d{2}[\)]\d{4}[\-]\d{4}/);
+
 export default {
   mixins: [validationMixin],
+
   data() {
     return {
       form: {
@@ -212,6 +207,7 @@ export default {
       },
     };
   },
+
   validations: {
     form: {
       name: {
@@ -238,9 +234,6 @@ export default {
         required,
         lettersAndNumbers,
       },
-      // email: {
-
-      // },
       country: {
         alphaNumAndDotValidator,
       },
@@ -252,6 +245,7 @@ export default {
       },
     },
   },
+
   methods: {
     checkForm() {
       this.$v.form.$touch();
@@ -291,13 +285,13 @@ export default {
   @include tablet {
     flex-direction: row;
     gap: 111px;
-    // align-items: center;
   }
+
   &__section {
-    // width: 17.08%;
     width: 100%;
     max-width: 246px;
   }
+
   &__title {
     font-family: "Roboto";
     font-style: normal;
@@ -307,6 +301,7 @@ export default {
     text-transform: uppercase;
     color: #000000;
   }
+
   &__label {
     font-family: "Roboto";
     font-style: normal;
@@ -316,45 +311,48 @@ export default {
     text-transform: uppercase;
     color: #000000;
   }
+
   &__control {
     border: 1px solid #000000;
     display: block;
     margin-top: 5px;
     width: 100%;
   }
+
   &__checkPart {
     margin-top: 14px;
     margin-bottom: 28px;
   }
+
   &__button {
     font-family: "Roboto";
     font-style: normal;
     font-weight: 400;
     font-size: 22px;
-    // line-height: 64px;
     text-transform: lowercase;
     color: #ffffff;
     background: #464646;
     border: 1px solid #000000;
-    // padding-left: 75px;
-    // padding-right:63px;
     width: 100%;
     margin-top: 51px;
   }
+
   &__check {
     &-input {
       margin-right: 10px;
     }
   }
 }
+
 .textarea {
-  // width: 246px;
   height: 85px;
 }
+
 .isInvalid {
   border: 1px solid red;
   color: red;
 }
+
 .warn {
   color: red;
 }
