@@ -18,9 +18,13 @@
     </div>
     <img :src="Dog" alt="Dog" class="slide__dog" />
     <img :src="Ellipse" alt="Ellipse" class="slide__ellipse" />
-    <img :src="WhiteEllipse" alt="WhiteEllipse" class="slide__whiteEllipse" />
+    <img
+      :src="NewWhiteEllipse"
+      alt="WhiteEllipse"
+      class="slide__whiteEllipse"
+    />
     <button @click="nextSlide" :disabled="isActiveButton">
-      <img :src="Arrow" alr="Arrow" class="slide__arrow" />
+      <img :src="Arrow1" alr="Arrow" class="slide__arrow" />
     </button>
     <div class="slide__page">
       <p class="slide__page-number">{{ index }}/3</p>
@@ -34,7 +38,9 @@ import EllipsePng from "@/images/Ellipse.png";
 import Dawn from "@/images/Dawn.svg";
 import Dog from "@/images/Dog.svg";
 import WhiteEllipse from "@/images/WhiteEllipse.svg";
-import Arrow from "@/images/Arrow.png";
+import NewWhiteEllipse from "@/images/newWhiteEllipse.png";
+// import Arrow from "@/images/Arrow.png";
+import Arrow1 from "@/images/cursor_arrow.svg";
 export default {
   props: {
     color: {
@@ -55,7 +61,9 @@ export default {
       Dawn: Dawn,
       Dog: Dog,
       WhiteEllipse: WhiteEllipse,
-      Arrow: Arrow,
+      NewWhiteEllipse: NewWhiteEllipse,
+      // Arrow: Arrow,
+      Arrow1: Arrow1,
     };
   },
 
